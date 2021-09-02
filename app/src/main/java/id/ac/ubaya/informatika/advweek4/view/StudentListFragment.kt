@@ -57,7 +57,7 @@ class StudentListFragment : Fragment() {
                 recVIew.visibility = View.VISIBLE
             }
             else{
-                txtError.visibility = View.VISIBLE
+                progressLoad.visibility = View.VISIBLE
                 recVIew.visibility = View.GONE
             }
         })
