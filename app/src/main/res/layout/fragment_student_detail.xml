@@ -36,7 +36,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtId"
+                android:id="@+id/txtIdS"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -56,7 +56,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txtName"
+                android:id="@+id/txtNameS"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
