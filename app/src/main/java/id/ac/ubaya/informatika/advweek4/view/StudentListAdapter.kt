@@ -32,7 +32,11 @@ class StudentListAdapter(val studentList:ArrayList<Student>):RecyclerView.Adapte
             txtName.text = studentList[position].name
 
             btnDetail.setOnClickListener {
-                val action = StudentListFragmentDirections.actionStudentDetail()
+                val studentID = studentList[position].id
+                val studentName = studentList[position].name
+                val studentBod = studentList[position].bod
+                val studentPhone = studentList[position].phone
+                val action = StudentListFragmentDirections.actionStudentDetail(studentID.toString(), studentName.toString(), studentBod.toString(), studentPhone.toString())
                 Navigation.findNavController(it).navigate(action)
             }
         }
