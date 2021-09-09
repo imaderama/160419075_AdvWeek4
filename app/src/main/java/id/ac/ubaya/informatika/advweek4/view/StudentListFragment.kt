@@ -51,14 +51,14 @@ class StudentListFragment : Fragment() {
             }
         })
 
-        viewModel.loadingDoneLD.observe(viewLifecycleOwner, Observer {
+        viewModel.loadingLD.observe(viewLifecycleOwner, Observer {
             if(it){
-                progressLoad.visibility = View.GONE
-                recVIew.visibility = View.VISIBLE
-            }
-            else{
                 progressLoad.visibility = View.VISIBLE
                 recVIew.visibility = View.GONE
+            }
+            else{
+                progressLoad.visibility = View.GONE
+                recVIew.visibility = View.VISIBLE
             }
         })
     }
