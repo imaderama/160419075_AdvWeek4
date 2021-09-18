@@ -39,7 +39,7 @@ class StudentListAdapter(val studentList:ArrayList<Student>):RecyclerView.Adapte
 //                val studentBod = studentList[position].bod
 //                val studentPhone = studentList[position].phone
 //                val action = StudentListFragmentDirections.actionStudentDetail(studentID.toString(), studentName.toString(), studentBod.toString(), studentPhone.toString())
-                val action = StudentListFragmentDirections.actionStudentDetail()
+                val action = StudentListFragmentDirections.actionStudentDetail(studentList[position].id.toString())
                 Navigation.findNavController(it).navigate(action)
             }
         }

@@ -24,9 +24,22 @@ class StudentDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        var id = ""
+
+        if(arguments!=null){
+//            var playerName = StudentDetailFragmentArgs.fromBundle(requireArguments()).name
+            id = StudentDetailFragmentArgs.fromBundle(requireArguments()).id
+//            var bod = StudentDetailFragmentArgs.fromBundle(requireArguments()).bod
+//            var phone = StudentDetailFragmentArgs.fromBundle(requireArguments()).phone
+
+            txtIdS.setText(id)
+//            txtNameS.setText(playerName)
+//            txtBod.setText(bod)
+//            txtPhone.setText(phone)
+        }
 
         viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
-        viewModel.fetch()
+        viewModel.fetch("http://adv.jitusolution.com/student.php?id="+id)
 
         viewModel.studentLD.observe(viewLifecycleOwner, Observer {
             txtIdS.setText(it.id)
@@ -35,16 +48,7 @@ class StudentDetailFragment : Fragment() {
             txtPhone.setText(it.phone)
         })
 
-//        if(arguments!=null){
-//            var playerName = StudentDetailFragmentArgs.fromBundle(requireArguments()).name
-//            var id = StudentDetailFragmentArgs.fromBundle(requireArguments()).id
-//            var bod = StudentDetailFragmentArgs.fromBundle(requireArguments()).bod
-//            var phone = StudentDetailFragmentArgs.fromBundle(requireArguments()).phone
-//
-//            txtIdS.setText(id)
-//            txtNameS.setText(playerName)
-//            txtBod.setText(bod)
-//            txtPhone.setText(phone)
-//        }
+
+
     }
 }
