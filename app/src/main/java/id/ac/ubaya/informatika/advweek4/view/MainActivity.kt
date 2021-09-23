@@ -15,28 +15,38 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var observable = Observable.just("hellow", "world", "!!")
-        val observer = object: Observer<String> {
-            override fun onSubscribe(d: Disposable?) {
-                Log.d("Messages", "Start subscribe")
-            }
-
-            override fun onNext(t: String?) {
-                Log.d("Messages", "data captured: ${t.toString()}")
-            }
-
-            override fun onError(e: Throwable?) {
-                Log.e("Messages", "error: ${e!!.message.toString()}")
-            }
-
-            override fun onComplete() {
-                Log.d("Messages", "Completed")
-            }
-        }
-
-        observable
+        Observable.just("hellow", "world", "!!")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(observer)
+                .subscribe(
+                        { Log.d("Messages", "data captured: $it") },
+                        { Log.d("Messages", "error: ${it.message.toString()}") },
+                        { Log.d("Messages", "complete") }
+                )
+
+
+
+//        val observer = object: Observer<String> {
+//            override fun onSubscribe(d: Disposable?) {
+//                Log.d("Messages", "Start subscribe")
+//            }
+//
+//            override fun onNext(t: String?) {
+//                Log.d("Messages", "data captured: ${t.toString()}")
+//            }
+//
+//            override fun onError(e: Throwable?) {
+//                Log.e("Messages", "error: ${e!!.message.toString()}")
+//            }
+//
+//            override fun onComplete() {
+//                Log.d("Messages", "Completed")
+//            }
+//        }
+
+//        observable
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(observer)
     }
 }
