@@ -38,7 +38,7 @@ class StudentListAdapter(val studentList:ArrayList<Student>):RecyclerView.Adapte
 //        with(holder.view){
 //            txtId.text = studentList[position].id
 //            txtName.text = studentList[position].name
-//            imageView.loadImage(studentList[position].photoUrl.toString(), holder.view.progressBar)
+//            imageView.loadImage(studentList[position].photoUrl.toString(), progressBar)
 //
 //            btnDetail.setOnClickListener {
 ////                val studentID = studentList[position].id

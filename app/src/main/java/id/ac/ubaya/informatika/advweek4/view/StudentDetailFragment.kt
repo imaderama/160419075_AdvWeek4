@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -52,30 +53,32 @@ class StudentDetailFragment : Fragment() {
         }
 
         viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
-        viewModel.fetch("http://adv.jitusolution.com/student.php?id="+id)
+        viewModel.fetch(id)
+//        Toast.makeText(context, "URL: $", Toast.LENGTH_SHORT).show()
+        observeViewModel()
+    }
 
+    fun observeViewModel() {
         viewModel.studentLD.observe(viewLifecycleOwner, Observer {
             dataBinding.student = it
+            Toast.makeText(context, "URL: ${it.photoUrl}", Toast.LENGTH_SHORT).show()
 //            txtIdS.setText(it.id)
 //            txtNameS.setText(it.name)
 //            txtBod.setText(it.bod)
 //            txtPhone.setText(it.phone)
 //            imageView2.loadImage(it.photoUrl.toString(), progressBar2)
 
-            var student = it
-            btnNotif.setOnClickListener {
-                Observable.timer(5, TimeUnit.SECONDS)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe {
-                        MainActivity.showNotification(student.name.toString(),
-                            "A new notification created",
-                            R.drawable.ic_baseline_person_24)
-                    }
-            }
+//            var student = it
+//            btnNotif.setOnClickListener {
+//                Observable.timer(5, TimeUnit.SECONDS)
+//                    .subscribeOn(Schedulers.io())
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe {
+//                        MainActivity.showNotification(student.name.toString(),
+//                            "A new notification created",
+//                            R.drawable.ic_baseline_person_24)
+//                    }
+//            }
         })
-
-
-
     }
 }

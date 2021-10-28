@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="student"
-            type="id.ac.ubaya.informatika.advweek4.model.Student" />
+        <variable name="student" type="id.ac.ubaya.informatika.advweek4.model.Student" />
+
     </data>
 
     <FrameLayout
@@ -23,10 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:imageUrl="@{student.photoUrl}"
-                android:progressBar="@{progressBar2}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/avatars" />
@@ -48,6 +44,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtIdS"
+                    android:text="@={student.id}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -68,7 +65,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtNameS"
-
+                    android:text="@={student.name}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -89,6 +86,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtBod"
+                    android:text="@={student.bod}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -109,6 +107,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtPhone"
+                    android:text="@={student.phone}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
