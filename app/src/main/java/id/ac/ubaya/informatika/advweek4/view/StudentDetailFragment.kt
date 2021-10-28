@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import id.ac.ubaya.informatika.advweek4.R
+import id.ac.ubaya.informatika.advweek4.databinding.FragmentStudentDetailBinding
 import id.ac.ubaya.informatika.advweek4.util.loadImage
 import id.ac.ubaya.informatika.advweek4.viewmodel.DetailViewModel
 import id.ac.ubaya.informatika.advweek4.viewmodel.ListViewModel
@@ -20,13 +22,17 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 class StudentDetailFragment : Fragment() {
-    private  lateinit var viewModel: DetailViewModel
+    private lateinit var viewModel: DetailViewModel
+    private lateinit var dataBinding:FragmentStudentDetailBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_student_detail, container, false)
+        dataBinding = DataBindingUtil.inflate<FragmentStudentDetailBinding>(inflater, R.layout.fragment_student_detail, container, false)
+        return dataBinding.root
+//        return inflater.inflate(R.layout.fragment_student_detail, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,7 +45,7 @@ class StudentDetailFragment : Fragment() {
 //            var bod = StudentDetailFragmentArgs.fromBundle(requireArguments()).bod
 //            var phone = StudentDetailFragmentArgs.fromBundle(requireArguments()).phone
 
-            txtIdS.setText(id)
+//            txtIdS.setText(id)
 //            txtNameS.setText(playerName)
 //            txtBod.setText(bod)
 //            txtPhone.setText(phone)
@@ -49,11 +55,12 @@ class StudentDetailFragment : Fragment() {
         viewModel.fetch("http://adv.jitusolution.com/student.php?id="+id)
 
         viewModel.studentLD.observe(viewLifecycleOwner, Observer {
-            txtIdS.setText(it.id)
-            txtNameS.setText(it.name)
-            txtBod.setText(it.bod)
-            txtPhone.setText(it.phone)
-            imageView2.loadImage(it.photoUrl.toString(), progressBar2)
+            dataBinding.student = it
+//            txtIdS.setText(it.id)
+//            txtNameS.setText(it.name)
+//            txtBod.setText(it.bod)
+//            txtPhone.setText(it.phone)
+//            imageView2.loadImage(it.photoUrl.toString(), progressBar2)
 
             var student = it
             btnNotif.setOnClickListener {
