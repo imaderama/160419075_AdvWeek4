@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import id.ac.ubaya.informatika.advweek4.R
 import id.ac.ubaya.informatika.advweek4.databinding.FragmentStudentDetailBinding
+import id.ac.ubaya.informatika.advweek4.model.Student
 import id.ac.ubaya.informatika.advweek4.util.loadImage
 import id.ac.ubaya.informatika.advweek4.viewmodel.DetailViewModel
 import id.ac.ubaya.informatika.advweek4.viewmodel.ListViewModel
@@ -22,7 +23,7 @@ import kotlinx.android.synthetic.main.fragment_student_detail.*
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class StudentDetailFragment : Fragment() {
+class StudentDetailFragment : Fragment(), ButtonNotifClickListener {
     private lateinit var viewModel: DetailViewModel
     private lateinit var dataBinding:FragmentStudentDetailBinding
 
@@ -61,14 +62,15 @@ class StudentDetailFragment : Fragment() {
     fun observeViewModel() {
         viewModel.studentLD.observe(viewLifecycleOwner, Observer {
             dataBinding.student = it
-            Toast.makeText(context, "URL: ${it.photoUrl}", Toast.LENGTH_SHORT).show()
+            dataBinding.listener = this
+//            Toast.makeText(context, "URL: ${it.photoUrl}", Toast.LENGTH_SHORT).show()
 //            txtIdS.setText(it.id)
 //            txtNameS.setText(it.name)
 //            txtBod.setText(it.bod)
 //            txtPhone.setText(it.phone)
 //            imageView2.loadImage(it.photoUrl.toString(), progressBar2)
-
 //            var student = it
+//
 //            btnNotif.setOnClickListener {
 //                Observable.timer(5, TimeUnit.SECONDS)
 //                    .subscribeOn(Schedulers.io())
@@ -81,4 +83,21 @@ class StudentDetailFragment : Fragment() {
 //            }
         })
     }
+
+//    override fun onButtonNotifClick(v: View) {
+//        Toast.makeText(context, "test", Toast.LENGTH_SHORT).show()
+//    }
+
+    override fun onButtonNotifClick(v: View, obj: Student) {
+//        Toast.makeText(context, "Nama: ${obj.name}", Toast.LENGTH_SHORT).show()
+        Observable.timer(5, TimeUnit.SECONDS)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                MainActivity.showNotification(obj.name.toString(),
+                    "A new notification created",
+                    R.drawable.ic_baseline_person_24)
+            }
+    }
+
 }
