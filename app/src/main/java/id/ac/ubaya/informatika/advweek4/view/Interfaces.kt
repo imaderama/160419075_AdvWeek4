@@ -10,3 +10,7 @@ interface ButtonDetailClickListener {
 interface ButtonNotifClickListener {
     fun onButtonNotifClick(v: View, obj: Student)
 }
+
+interface ButtonUpdateClickListener {
+    fun onButtonUpdateClick(v: View, obj: Student)
+}

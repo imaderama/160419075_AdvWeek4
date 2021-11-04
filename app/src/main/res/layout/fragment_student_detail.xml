@@ -5,7 +5,8 @@
 
     <data>
         <variable name="student" type="id.ac.ubaya.informatika.advweek4.model.Student" />
-        <variable name="listener" type="id.ac.ubaya.informatika.advweek4.view.ButtonNotifClickListener" />
+        <variable name="notiflistener" type="id.ac.ubaya.informatika.advweek4.view.ButtonNotifClickListener" />
+        <variable name="updatelistener" type="id.ac.ubaya.informatika.advweek4.view.ButtonUpdateClickListener" />
     </data>
 
     <FrameLayout
@@ -121,7 +122,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="UPDATE"
+                android:onClick="@{(view)->updatelistener.onButtonUpdateClick(view, student)}"
+                android:text="@string/update"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout7" />
 
@@ -142,7 +144,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:onClick="@{(view)->listener.onButtonNotifClick(view, student)}"
+                android:onClick="@{(view)->notiflistener.onButtonNotifClick(view, student)}"
                 android:text="@string/createnotification"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout7" />

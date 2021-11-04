@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.fragment_student_detail.*
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class StudentDetailFragment : Fragment(), ButtonNotifClickListener {
+class StudentDetailFragment : Fragment(), ButtonNotifClickListener, ButtonUpdateClickListener {
     private lateinit var viewModel: DetailViewModel
     private lateinit var dataBinding:FragmentStudentDetailBinding
 
@@ -62,7 +62,8 @@ class StudentDetailFragment : Fragment(), ButtonNotifClickListener {
     fun observeViewModel() {
         viewModel.studentLD.observe(viewLifecycleOwner, Observer {
             dataBinding.student = it
-            dataBinding.listener = this
+            dataBinding.notiflistener = this
+            dataBinding.updatelistener = this
 //            Toast.makeText(context, "URL: ${it.photoUrl}", Toast.LENGTH_SHORT).show()
 //            txtIdS.setText(it.id)
 //            txtNameS.setText(it.name)
@@ -98,6 +99,10 @@ class StudentDetailFragment : Fragment(), ButtonNotifClickListener {
                     "A new notification created",
                     R.drawable.ic_baseline_person_24)
             }
+    }
+
+    override fun onButtonUpdateClick(v: View, obj: Student) {
+        Toast.makeText(context, "BUTTON UPDATE, Nama: ${obj.name}", Toast.LENGTH_SHORT).show()
     }
 
 }
